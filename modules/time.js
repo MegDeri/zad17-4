@@ -1,12 +1,14 @@
 var os = require('os');
 
-function convertTime(uptime) {
-    var uptime = os.uptime(); 
+function convertTime(num) {
 
-    var hour = Math.floor(uptime / 3600);
-    var minute = Math.floor((uptime - ( hour * 3600)) / 60);
-    var seconds = uptime - (hour * 3600) -(minute * 60);
-        return {h: hour, min: minute, sec: seconds};
+    var hour = Math.floor(num / 3600);
+    var minute = Math.floor(num % 3600 / 60);
+    var seconds = Math.floor(num % 3600 / 60);
+    var hShow = hour > 0 ? hour + (hour == 1 ? " hour, " : " hours, ") : "";
+    var minShow = minute > 0 ? minute + (minute == 1 ? " minute, " : " minutes, ") : "";
+    var secShow = seconds > 0 ? seconds + (seconds == 1 ? " second" : " seconds") : "";
+    return hShow + minShow + secShow; 
 };
 
-  exports.print = convertTime;
+  exports.print2 = convertTime;
